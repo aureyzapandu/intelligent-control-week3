@@ -27,9 +27,11 @@ while True:
     # Prediksi kelas
     pred = model.predict(img)
     label = class_labels[np.argmax(pred)]
+    accuracy = np.max(pred) * 100  # Probabilitas tertinggi sebagai akurasi (%)
     
     # Tampilkan hasil
     cv2.putText(frame, f'Class: {label}', (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+    cv2.putText(frame, f'Accuracy: {accuracy:.2f}%', (50, 90), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2)
     cv2.imshow('Frame', frame)
     cv2.imshow('Night Vision', night_vision)
     if cv2.waitKey(1) & 0xFF == ord('q'):
